@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School admission age guide</title>
+    <title>School admission age quiz</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -252,15 +252,15 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="subtitle">MOE guidelines: how parents and schools are interpreting</div>
-            <h1>School admission age guide</h1>
+            <div class="subtitle">MOE guidelines: current common unofficial interpretation of the latest guidelines, February 2026</div>
+            <h1>School admission age quiz</h1>
         </div>
 
         <div id="quiz-container" class="quiz-container"></div>
 
         <div class="disclaimer">
             <strong>Disclaimer</strong>
-            The below guidance reflects common current understanding and interpretation of the Ministry of Education guidelines shared on February 12th 2026.
+            The below guidance reflects common current unofficial understanding and interpretation of the Ministry of Education guidelines shared on February 12th 2026.
             It has been prepared in good faith and with the best intent to support parents in navigating the updates. This document is not issued by the MOE or KHDA, nor does it represent their official wording. While the information has been sourced from official documents, alignment of interpretation with authorities cannot be guaranteed.
             For official clarification, please refer directly to MOE / KHDA communications.
         </div>
@@ -270,7 +270,7 @@
         const quizData = {
             start: {
                 number: "Question 1",
-                question: "Is your child currently enrolled in any school / nursery / early childhood centre in 2025/2026?",
+                question: "Is your child enrolled in any school / nursery / early childhood centre in 2025/2026?",
                 options: [
                     { text: "✓ Yes", next: "result_enrolled" },
                     { text: "✕ No", next: "curriculum" }
@@ -286,7 +286,7 @@
             },
             birth_2022: {
                 number: "Question 3",
-                question: "Is your child born between September 1 - December 1, 2022?",
+                question: "Is your child born between September / December 2022?",
                 options: [
                     { text: "✓ Yes", next: "result_2022_assessment" },
                     { text: "✕ No", next: "birth_2023" }
@@ -294,7 +294,7 @@
             },
             birth_2023: {
                 number: "Question 4",
-                question: "Is your child born between September 1 - December 1, 2023?",
+                question: "Is your child born between September / December 2023?",
                 options: [
                     { text: "✓ Yes", next: "result_2023_assessment" },
                     { text: "✕ No", next: "birth_2024_plus" }
@@ -302,7 +302,7 @@
             },
             birth_2024_plus: {
                 number: "Question 5",
-                question: "Is your child born between September 1 - December 1, 2024 (or 2025, 2026...)?",
+                question: "Is your child born between September / December 2024 (or 2025...)?",
                 options: [
                     { text: "✓ Yes", next: "result_annual_assessment" },
                     { text: "✕ No", next: "result_new_cutoff" }
@@ -312,7 +312,7 @@
 
         const results = {
             result_enrolled: {
-                title: "Old Cut-Off Applies Indefinitely",
+                title: "Old cut-off applies indefinitely",
                 description: `
                     <strong>Examples:</strong>
                     <ul>
