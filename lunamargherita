@@ -195,6 +195,16 @@
         .restart-button:hover {
             opacity: 0.9;
         }
+        
+        .gratitude {
+            margin-top: 100px;
+            padding-top: 40px;
+            border-top: 1px solid var(--notion-border);
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--notion-text);
+            line-height: 1.5;
+        }
 
         .disclaimer {
             margin-top: 60px;
@@ -252,12 +262,21 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="subtitle">MOE guidelines: current common unofficial interpretation of the latest guidelines, February 2026</div>
+            <div class="subtitle">MOE guidelines: current common unofficial interpretation</div>
             <h1>QUIZ: school admission age</h1>
+            <div class="subtitle">Based on the latest  <a href="https://www.moe.gov.ae/En/ImportantLinks/Documents/Files2026/Admission-age-guide-KG-G1/Admission%20Age%20Guide%20for%20KG%20and%20Grade%201%20Students.pdf?utm_source=ig&utm_medium=social&utm_content=link_in_bio">MOE guidelines update</a> of February 2026</div>
         </div>
 
         <div id="quiz-container" class="quiz-container"></div>
-
+ <div class="gratitude">
+            <strong>Thank you</strong>
+            Over the past two weeks, parents expressed their concerns to the Ministry of Education and KHDA.
+They shared their personal stories and their worries.
+They were met with trust and understanding.
+The authorities have worked tirelessly to engage and find solutions for the many people that are proud to call the UAE their home.
+A common vision emerged of fair and equal opportunities for all students.
+Their true leadership deserves acknowledgment and praise.
+        </div>
         <div class="disclaimer">
             <strong>Disclaimer</strong>
             The below guidance reflects common current unofficial understanding and interpretation of the Ministry of Education guidelines shared on February 12th 2026.
