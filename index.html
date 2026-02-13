@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School admission age guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --notion-text: #37352F;
+            --notion-text-secondary: #787774;
+            --notion-bg: #FFFFFF;
+            --notion-bg-secondary: #F7F6F3;
+            --notion-border: #E3E2E0;
+            --notion-hover: rgba(0, 0, 0, 0.05);
+            --notion-blue: #2383E2;
+            --notion-blue-bg: #E9F2FC;
+            --notion-purple: #9065B0;
+            --notion-purple-bg: #F3EDFA;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--notion-bg);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: var(--notion-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--notion-text);
+            margin-bottom: 8px;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+        }
+
+        .header .subtitle {
+            font-size: 14px;
+            color: var(--notion-text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .quiz-container {
+            min-height: 400px;
+        }
+
+        .question-card {
+            background: transparent;
+            border: 1px solid var(--notion-border);
+            padding: 32px;
+            border-radius: 3px;
+            margin-bottom: 24px;
+        }
+
+        .question-number {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--notion-text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .question-text {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--notion-text);
+            margin-bottom: 32px;
+            line-height: 1.4;
+        }
+
+        .options {
+            display: grid;
+            gap: 12px;
+        }
+
+        .option-button {
+            background: var(--notion-bg);
+            border: 1px solid var(--notion-border);
+            padding: 16px 20px;
+            border-radius: 3px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--notion-text);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+            font-family: inherit;
+            width: 100%;
+        }
+
+        .option-button:hover {
+            background: var(--notion-hover);
+            border-color: var(--notion-text);
+        }
+
+        .option-button:active {
+            transform: scale(0.98);
+        }
+
+        .result-card {
+            background: transparent;
+            border-left: 3px solid #ff3b3f;
+            padding: 24px;
+            border-radius: 3px;
+            margin-bottom: 24px;
+        }
+
+        .result-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--notion-text);
+            margin-bottom: 12px;
+        }
+
+        .result-description {
+            font-size: 15px;
+            color: var(--notion-text);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .result-description ul {
+            margin-top: 12px;
+            padding-left: 20px;
+        }
+
+        .result-description li {
+            margin-bottom: 8px;
+        }
+
+        .result-note {
+            margin-top: 16px;
+            padding: 12px 16px;
+            background: var(--notion-bg-secondary);
+            border-radius: 3px;
+            font-size: 14px;
+            color: var(--notion-text);
+        }
+
+        .back-button {
+            background: transparent;
+            border: 1px solid var(--notion-border);
+            padding: 10px 16px;
+            border-radius: 3px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--notion-text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            margin-top: 16px;
+        }
+
+        .back-button:hover {
+            background: var(--notion-hover);
+            color: var(--notion-text);
+        }
+
+        .restart-button {
+            background: var(--notion-text);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 3px;
+            font-size: 15px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            margin-top: 24px;
+        }
+
+        .restart-button:hover {
+            opacity: 0.9;
+        }
+
+        .disclaimer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid var(--notion-border);
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--notion-text-secondary);
+            line-height: 1.5;
+        }
+
+        .disclaimer strong {
+            color: var(--notion-text);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .question-card, .result-card {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 20px 12px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .question-card {
+                padding: 24px 20px;
+            }
+
+            .question-text {
+                font-size: 20px;
+            }
+
+            .option-button {
+                font-size: 15px;
+                padding: 14px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="subtitle">MOE guidelines: how parents and schools are interpreting</div>
+            <h1>School admission age guide</h1>
+        </div>
+
+        <div id="quiz-container" class="quiz-container"></div>
+
+        <div class="disclaimer">
+            <strong>Disclaimer</strong>
+            The below guidance reflects common current understanding and interpretation of the Ministry of Education guidelines shared on February 12th 2026.
+            It has been prepared in good faith and with the best intent to support parents in navigating the updates. This document is not issued by the MOE or KHDA, nor does it represent their official wording. While the information has been sourced from official documents, alignment of interpretation with authorities cannot be guaranteed.
+            For official clarification, please refer directly to MOE / KHDA communications.
+        </div>
+    </div>
+
+    <script>
+        const quizData = {
+            start: {
+                number: "Question 1",
+                question: "Is your child currently enrolled in any school / nursery / early childhood centre in 2025/2026?",
+                options: [
+                    { text: "✓ Yes", next: "result_enrolled" },
+                    { text: "✕ No", next: "curriculum" }
+                ]
+            },
+            curriculum: {
+                number: "Question 2",
+                question: "Is your child going to enrol in British curriculum?",
+                options: [
+                    { text: "✓ Yes — British Curriculum", next: "birth_2022" },
+                    { text: "✕ No — Other Curriculum", next: "result_new_cutoff" }
+                ]
+            },
+            birth_2022: {
+                number: "Question 3",
+                question: "Is your child born between September 1 - December 1, 2022?",
+                options: [
+                    { text: "✓ Yes", next: "result_2022_assessment" },
+                    { text: "✕ No", next: "birth_2023" }
+                ]
+            },
+            birth_2023: {
+                number: "Question 4",
+                question: "Is your child born between September 1 - December 1, 2023?",
+                options: [
+                    { text: "✓ Yes", next: "result_2023_assessment" },
+                    { text: "✕ No", next: "birth_2024_plus" }
+                ]
+            },
+            birth_2024_plus: {
+                number: "Question 5",
+                question: "Is your child born between September 1 - December 1, 2024 (or 2025, 2026...)?",
+                options: [
+                    { text: "✓ Yes", next: "result_annual_assessment" },
+                    { text: "✕ No", next: "result_new_cutoff" }
+                ]
+            }
+        };
+
+        const results = {
+            result_enrolled: {
+                title: "Old Cut-Off Applies Indefinitely",
+                description: `
+                    <strong>Examples:</strong>
+                    <ul>
+                        <li>Sept-Dec 2022 → FS1/Pre-KG in 2026/2027</li>
+                        <li>Sept-Dec 2023 → FS1/Pre-KG in 2027/2028</li>
+                    </ul>
+                    <div class="result-note">
+                        <strong>Protected:</strong> Children already in nursery/school continue with August 31 cut-off
+                    </div>
+                `
+            },
+            result_2022_assessment: {
+                title: "⚠️ 2026/2027 Only: Assessment Available",
+                description: `
+                    Schools and parents can assess readiness for FS2.<br><br>
+                    <strong>If ready:</strong> FS2<br>
+                    <strong>If not ready:</strong> FS1<br><br>
+                    <em>Academic progression follows from placement</em>
+                `
+            },
+            result_2023_assessment: {
+                title: "⚠️ Assessment Available for FS1",
+                description: `
+                    Schools assess readiness in consultation with parents.<br><br>
+                    <strong>If ready:</strong> FS1 this year<br>
+                    <strong>If not ready:</strong> FS1 next year
+                `
+            },
+            result_annual_assessment: {
+                title: "⚠️ Annual Assessment Policy",
+                description: `
+                    If turning 3 between Sept-Dec of school year:<br><br>
+                    Schools assess readiness in consultation with parents.<br><br>
+                    <strong>If ready:</strong> FS1 that year<br>
+                    <strong>If not ready:</strong> FS1 following year<br><br>
+                    <em>Applies annually from 2026/2027 onwards</em>
+                `
+            },
+            result_new_cutoff: {
+                title: "New Cut-Off Applies",
+                description: `
+                    December 31 cut-off (child must turn 3 before Jan 1)
+                    <div style="margin-top: 16px;">
+                        <strong>Examples:</strong>
+                        <ul>
+                            <li>Sept-Dec 2022 → FS2/KG1</li>
+                            <li>Sept-Dec 2023 → FS1/Pre-KG</li>
+                        </ul>
+                    </div>
+                `
+            }
+        };
+
+        let history = [];
+        let currentQuestion = 'start';
+
+        function renderQuestion(questionId) {
+            const question = quizData[questionId];
+            const container = document.getElementById('quiz-container');
+            
+            let html = `
+                <div class="question-card">
+                    <div class="question-number">${question.number}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="options">
+            `;
+            
+            question.options.forEach((option, index) => {
+                html += `
+                    <button class="option-button" onclick="handleAnswer('${option.next}')">
+                        ${option.text}
+                    </button>
+                `;
+            });
+            
+            html += `
+                    </div>
+                </div>
+            `;
+            
+            if (history.length > 0) {
+                html += `<button class="back-button" onclick="goBack()">← Go back</button>`;
+            }
+            
+            container.innerHTML = html;
+        }
+
+        function renderResult(resultId) {
+            const result = results[resultId];
+            const container = document.getElementById('quiz-container');
+            
+            const html = `
+                <div class="result-card">
+                    <div class="result-title">${result.title}</div>
+                    <div class="result-description">${result.description}</div>
+                </div>
+                <button class="back-button" onclick="goBack()">← Go back</button>
+                <button class="restart-button" onclick="restart()">Start over</button>
+            `;
+            
+            container.innerHTML = html;
+        }
+
+        function handleAnswer(next) {
+            history.push(currentQuestion);
+            currentQuestion = next;
+            
+            if (next.startsWith('result_')) {
+                renderResult(next);
+            } else {
+                renderQuestion(next);
+            }
+        }
+
+        function goBack() {
+            if (history.length > 0) {
+                currentQuestion = history.pop();
+                renderQuestion(currentQuestion);
+            }
+        }
+
+        function restart() {
+            history = [];
+            currentQuestion = 'start';
+            renderQuestion('start');
+        }
+
+        // Initialize
+        renderQuestion('start');
+    </script>
+</body>
+</html>
